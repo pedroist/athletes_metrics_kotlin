@@ -1,5 +1,6 @@
 package com.vitrude.athleteperformance.model
 
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import jakarta.persistence.*
 import java.time.LocalDateTime
 
@@ -16,6 +17,7 @@ data class Athlete(
     @Column(nullable = false)
     var sport: String,
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "athlete", cascade = [CascadeType.ALL], orphanRemoval = true)
     val performanceMetrics: MutableList<PerformanceMetric> = mutableListOf(),
 
